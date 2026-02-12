@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOOL SOI LÁ BÀI VIP 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Roboto', sans-serif; background: #0f172a; color: white; }
+        .gold-gradient { background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 50%, #f59e0b 100%); }
+        .card-glass { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(245, 158, 11, 0.3); }
+        .glow { box-shadow: 0 0 15px rgba(245, 158, 11, 0.5); }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+
+    <div id="app" class="w-full max-w-md card-glass rounded-2xl p-6 glow">
+        
+        <div class="text-center mb-6">
+            <h1 class="text-2xl font-bold text-yellow-500 uppercase tracking-widest">Tool Soi Bài VIP 2026</h1>
+            <div class="h-1 w-32 gold-gradient mx-auto mt-2 rounded-full"></div>
+        </div>
+
+        <div id="auth-section">
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Tên tài khoản</label>
+                    <input type="text" id="username" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-yellow-500 transition" placeholder="Nhập username...">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">Mật khẩu</label>
+                    <input type="password" id="password" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-3 focus:outline-none focus:border-yellow-500 transition" placeholder="Nhập mật khẩu...">
+                </div>
+                <button onclick="handleLogin()" class="w-full gold-gradient text-slate-900 font-bold py-3 rounded-lg hover:opacity-90 transition transform active:scale-95">
+                    ĐĂNG NHẬP HỆ THỐNG
+                </button>
+            </div>
+        </div>
+
+        <div id="tool-section" class="hidden space-y-4">
+            <div class="grid grid-cols-2 gap-2 text-sm">
+                <div class="p-2 bg-slate-800 rounded">User: <span id="display-name" class="text-yellow-500 italic"></span></div>
+                <div class="p-2 bg-slate-800 rounded">Server: <span class="text-green-400">Ổn định</span></div>
+            </div>
+
+            <div class="text-center py-6 border-2 border-dashed border-yellow-500/30 rounded-xl bg-yellow-500/5">
+                <p class="text-gray-400 uppercase text-xs">Dự đoán kết quả tiếp theo</p>
+                <div id="result-box" class="text-4xl font-black my-2 text-white">---</div>
+                <p class="text-xs text-yellow-600">Tỉ lệ thắng: 100%</p>
+            </div>
+
+            <div class="space-y-2 text-sm text-gray-300">
+                <div class="flex justify-between"><span>Mã Code:</span> <span id="code-val" class="font-mono text-yellow-500">########</span></div>
+                <div class="flex justify-between"><span>Số may mắn:</span> <span id="lucky-num" class="text-yellow-500">-</span></div>
+            </div>
+
+            <button onclick="soiCau()" id="btn-soi" class="w-full border-2 border-yellow-500 text-yellow-500 font-bold py-3 rounded-lg hover:bg-yellow-500 hover:text-black transition">
+                BẮT ĐẦU SOI CẦU
+            </button>
+            <p class="text-[10px] text-center text-gray-500 italic">Link tham gia: RR99AD.COM</p>
+        </div>
+    </div>
+
+    <script>
+        function handleLogin() {
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+            if(user && pass) {
+                document.getElementById('display-name').innerText = user;
+                document.getElementById('auth-section').classList.add('hidden');
+                document.getElementById('tool-section').classList.remove('hidden');
+            } else {
+                alert("Vui lòng nhập đủ tài khoản và mật khẩu!");
+            }
+        }
+
+        function soiCau() {
+            const btn = document.getElementById('btn-soi');
+            const resBox = document.getElementById('result-box');
+            const codeBox = document.getElementById('code-val');
+            const luckyBox = document.getElementById('lucky-num');
+
+            btn.disabled = true;
+            btn.innerText = "ĐANG PHÂN TÍCH...";
+            resBox.innerText = "...";
+            resBox.className = "text-4xl font-black my-2 text-gray-400 animate-pulse";
+
+            setTimeout(() => {
+                const results = ["CÁI", "CON"];
+                const finalRes = results[Math.floor(Math.random() * results.length)];
+                const code = Math.random().toString(36).substring(2, 10).toUpperCase();
+                
+                resBox.innerText = finalRes;
+                resBox.className = "text-5xl font-black my-2 " + (finalRes === "CÁI" ? "text-red-500" : "text-blue-500");
+                codeBox.innerText = code;
+                luckyBox.innerText = Math.floor(Math.random() * 10);
+                
+                btn.disabled = false;
+                btn.innerText = "SOI TIẾP";
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
